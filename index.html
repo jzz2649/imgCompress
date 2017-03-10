@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>图片压缩</title>
+  <style>
+    .btn {
+      display: inline-block;
+      padding: 5px;
+      border: 1px solid #999;
+      cursor: pointer;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .btn:hover {
+      background: #f2f2f2;
+    }
+    .btn:active {
+      background: #d2d2d2;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <input type="file" accept="image/*">
+  </div>
+  <div>
+    <div class="btn j-btn">btn</div>
+  </div>
+  <div>
+    <a href="" download="img"></a>
+  </div>
+  <div>
+    <img src="">
+  </div>
+  <script src="src/imgCompress.js"></script>
+  <script>
+  var btn = document.querySelector('.j-btn');
+  var a = document.querySelector('a');
+  var img = document.querySelector('img');
+    btn.addEventListener('click', function(e){
+      ImgCompress(document.querySelector('input').files[0],function(base64){
+        a.href = img.src = base64;
+        a.textContent = '下载';
+      })
+    })
+  </script>
+</body>
+</html>
