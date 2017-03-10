@@ -5,12 +5,12 @@
  * @description 图片压缩
  */
 
- (function (global, factory) {
-    if (typeof define === 'function' && (define.amd || define.cmd)) {
-        define(factory);
-    } else {
-        global.ImgCompress = factory();
-    }
+(function (global, factory) {
+  if (typeof define === 'function' && (define.amd || define.cmd)) {
+    define(factory);
+  } else {
+    global.ImgCompress = factory();
+  }
 }(this, function(){
   'use strict';
 
@@ -23,30 +23,29 @@
       callback: function () {}
     };
 
-    if (file === undefined && file === null) {
+    if (file === undefined || file === null) {
+      return;
+    }
+
+    if (typeof file !== 'object') {
       return;
     }
 
     var params = {};
     options = options || {};
 
-    if (typeof options === 'function') {
-      for (var key in defaults) {
-        params[key] = defaults[key];
-      }
-      params.callback = options;
-    } else {
-      for (var key in defaults) {
-        if (typeof options[key] !== 'undefined') {
-          params[key] = options[key];
-        } else {
-          params[key] = defaults[key];
-        }
-      }
+    for (var key in defaults) {
+      params[key] = defaults[key];
     }
 
-    if (typeof file !== 'object') {
-      return;
+    if (typeof options === 'function') {
+      params.callback = options;
+    } else {
+      for (var o in options) {
+        if (options.hasOwnProperty(o)) {
+          params[o] = options[o];
+        }
+      }
     }
 
     var _zip = function (file, callback) {
@@ -105,7 +104,6 @@
         handle(ObjectURL);
       }
     }
-
 
     _zip(file, params.callback);
   };

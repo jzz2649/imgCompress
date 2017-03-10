@@ -21,11 +21,12 @@
 以下默认配置
 ``` options
 ImgCompress(file, {
-  sizeConstrained: 10240,//限制压缩大小(kb)
-  scale: 0.6,//压缩比例(范围0~1)
-  onSize: 500,//大于500kb启动压缩
-  w_scale: 640,//宽度大于640px进行裁剪
-  callback: function () {},//回调方法,包含一个参数base64(文件的base64编码字符串)
+  sizeConstrained: 10240,//限制压缩大小(单位kb，可选)
+  scale: 0.6,//压缩比例(范围0~1，可选)
+  onSize: 500,//大于500kb启动压缩(可选)
+  w_scale: 640,//宽度大于640px进行裁剪(可选)
+  type: "image/jpeg",//文件类型(默认根据文件判断，可选)
+  callback: function () {},//回调方法,包含一个参数base64(文件的base64编码字符串，可选)
 })
 ```
 如果option是方法，赋值给options的callback方法
